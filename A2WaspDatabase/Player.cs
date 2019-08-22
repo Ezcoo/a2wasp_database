@@ -10,7 +10,7 @@ namespace A2WaspDatabase
     public class Player
     {
         public int id { get; set; }
-        public int score { get; set; }
+        public int totalScore { get; set; }
 
         public int ticks { get; set; }
     }

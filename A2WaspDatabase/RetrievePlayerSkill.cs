@@ -8,12 +8,22 @@ using LiteDB;
 
 namespace A2WaspDatabase
 {
-    [AddIn("RetrievePlayerScore")] // Name of the function
-    public class RetrievePlayerScore : AddIn
+    [AddIn("RetrievePlayerSkill")] // Name of the function
+    public class RetrievePlayerSkill : MethodAddIn
     {
-        public override string Invoke(string args, int maxResultSize)
+        public string Retrieve(string args)
         {
-            int guid = args[0];
+            String[] separator = { "," };
+            int count = 1;
+            String[] argumentsStringArray = args.Split(separator, count, StringSplitOptions.RemoveEmptyEntries);
+            int[] arguments = new int[2];
+
+            for (int i = 0; i < arguments.Length - 1; ++i)
+            {
+                arguments[i] = Convert.ToInt32(argumentsStringArray[i]);
+            }
+
+            int guid = arguments[0];
             using (var db = new LiteDatabase(@"C:\DB\playerScores.db"))
             {
                 var players = db.GetCollection<Player>("players");
@@ -23,19 +33,19 @@ namespace A2WaspDatabase
                     var player = new Player
                     {
                         id = guid,
-                        score = 0,
+                        totalScore = 0,
                         ticks = 1
                     };
 
                     players.Insert(player);
 
-                    return (player.score / player.ticks).ToString();
+                    return (player.totalScore / player.ticks).ToString();
                 }
                 else
                 {
                     Player existingPlayer = (Player) players.FindById(guid);
 
-                    return (existingPlayer.score / existingPlayer.ticks).ToString();
+                    return (existingPlayer.totalScore / existingPlayer.ticks).ToString();
                 }
 
             }
