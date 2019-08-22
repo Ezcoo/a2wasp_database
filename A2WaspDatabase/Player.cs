@@ -11,5 +11,7 @@ namespace A2WaspDatabase
     {
         public int id { get; set; }
         public int score { get; set; }
+
+        public int ticks { get; set; }
     }
 }

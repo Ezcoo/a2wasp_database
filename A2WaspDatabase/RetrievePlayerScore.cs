@@ -23,18 +23,19 @@ namespace A2WaspDatabase
                     var player = new Player
                     {
                         id = guid,
-                        score = 0
+                        score = 0,
+                        ticks = 1
                     };
 
                     players.Insert(player);
 
-                    return player.score.ToString();
+                    return (player.score / player.ticks).ToString();
                 }
                 else
                 {
-                    Player existingPlayer = (Player) players.Find(Query.EQ("id", guid));
+                    Player existingPlayer = (Player) players.FindById(guid);
 
-                    return existingPlayer.score.ToString();
+                    return (existingPlayer.score / existingPlayer.ticks).ToString();
                 }
 
             }
