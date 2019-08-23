@@ -55,7 +55,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="RetrievePlayerSkill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StorePlayerScore.cs" />
+    <Compile Include="StorePlayerSkill.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
