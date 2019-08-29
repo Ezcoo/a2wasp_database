@@ -27,7 +27,7 @@ namespace A2WaspDatabase
             int scoreDiff = arguments[1];
 
 
-            using (var db = new LiteDatabase(@"C:\DB\playerSkills.db"))
+            using (var db = new LiteDatabase(@"C:\Users\Administrator\Documents\Database\playerSkills.db"))
             {
 
                 var players = db.GetCollection<Player>("players");
